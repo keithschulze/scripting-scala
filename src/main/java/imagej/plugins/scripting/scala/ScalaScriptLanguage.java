@@ -2,7 +2,7 @@
  * #%L
  * ImageJ software for multidimensional image processing and analysis.
  * %%
- * Copyright (C) 2009 - 2013 Board of Regents of the University of
+ * Copyright (C) 2009 - 2014 Board of Regents of the University of
  * Wisconsin-Madison, Broad Institute of MIT and Harvard, and Max Planck
  * Institute of Molecular Cell Biology and Genetics.
  * %%
@@ -26,32 +26,29 @@
  * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
- * 
- * The views and conclusions contained in the software and documentation are
- * those of the authors and should not be interpreted as representing official
- * policies, either expressed or implied, of any organization.
  * #L%
  */
 
 package imagej.plugins.scripting.scala;
 
-import java.util.HashMap;
+import imagej.script.AdaptedScriptLanguage;
+import imagej.script.ScriptLanguage;
 
-import javax.script.Bindings;
+import javax.script.ScriptEngine;
+
+import org.scijava.plugin.Plugin;
 
 /**
- * Scala variable bindings.
- * <p>
- * This is only a hack that stops working after the engine has evaluated
- * anything because the values are not updated. However, there is work
- * going on in the Scala project to -- finally -- make it JSR-233 compliant
- * so we do not really need to bother all that much for now: 2.11.0 will
- * fix it by giving us a proper ScriptEngineFactory.
- * </p>
- * @author Johannes Schindelin
+ * An adapter of the Scala language to ImageJ's scripting interfaces.
+ * 
+ * @author Curtis Rueden
+ * @see ScriptEngine
  */
-public class ScalaBindings extends HashMap<String, Object> implements Bindings {
+@Plugin(type = ScriptLanguage.class)
+public class ScalaScriptLanguage extends AdaptedScriptLanguage {
 
-	private static final long serialVersionUID = 1L;
+	public ScalaScriptLanguage() {
+		super("scala");
+	}
 
 }
